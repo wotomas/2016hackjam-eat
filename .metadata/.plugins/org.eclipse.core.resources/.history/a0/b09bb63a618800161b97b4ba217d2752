@@ -1,0 +1,18 @@
+var express = require('express');
+var router = express.Router();
+var bodyParser = require('body-parser');
+var request = require('request');
+
+var urlencodedParser = bodyParser.urlencoded({
+    extended: true
+});
+
+router.get('/', function(req, res, next) {
+  res.render('login', {});
+});
+
+router.post('/post', urlencodedParser, function(req, res, next){
+	res.redirect('/orders?phone=' + req.body.phone);
+});
+
+module.exports = router;
