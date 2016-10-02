@@ -1,8 +1,12 @@
-package info.kimjihyok.eat;
+package info.kimjihyok.eat.signIn;
 
+import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -14,11 +18,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import info.kimjihyok.eat.R;
 import info.kimjihyok.eat.helpers.ApiManager;
 import info.kimjihyok.eat.helpers.EatApiServices;
+import info.kimjihyok.eat.model.User;
 import retrofit2.Retrofit;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "MainActivity";
 
     private static final int RC_SIGN_IN = 1001;
@@ -26,11 +33,21 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ApiManager mApiManager;
     private GoogleApiClient mGoogleApiClient;
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getActionBar();
+        if(actionBar != null) {
+            actionBar.setTitle(R.string.app_name);
+            actionBar.show();
+        }
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiManager.BASE_URL)
@@ -84,13 +101,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
+            User newUser = new User();
             GoogleSignInAccount acct = result.getSignInAccount();
-            String displayName = acct.getDisplayName();
-            String email = acct.getEmail();
-            String id = acct.getId();
-            String idToken = acct.getIdToken();
-            //updateUI(true);
-            Toast.makeText(this, "User Detail: " + displayName + "\n" + email + "\n" + id + "\n" + idToken, Toast.LENGTH_LONG).show();
+
+            newUser.displayName = acct.getDisplayName();
+            newUser.email = acct.getEmail();
+            newUser.id = acct.getId();
+
+            Toast.makeText(this, "User Detail: " + newUser.toString(), Toast.LENGTH_LONG).show();
+
+
         }
     }
 }

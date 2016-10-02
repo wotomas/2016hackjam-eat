@@ -5,15 +5,18 @@ package info.kimjihyok.eat.model;
  */
 
 public class User {
-    public int key;
-    public String username;
-    public String name;
+    public String displayName;
+    public String email;
+    public String id;
+    public String availableTimeString;
 
-    public User(int key, String username, String name) {
-        this.key = key;
-        this.username = username;
-        this.name = name;
+    @Override
+    public String toString() {
+        return "User{" +
+                "availableTimeString='" + availableTimeString + '\'' +
+                ", id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", displayName='" + displayName + '\'' +
+                '}';
     }
-
-
 }
