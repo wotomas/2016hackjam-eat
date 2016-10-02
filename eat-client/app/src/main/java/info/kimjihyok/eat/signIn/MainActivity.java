@@ -1,11 +1,11 @@
 package info.kimjihyok.eat.signIn;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ApiManager mApiManager;
     private GoogleApiClient mGoogleApiClient;
+    private ActionBar mActionBar;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -43,10 +44,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ActionBar actionBar = getActionBar();
-        if(actionBar != null) {
-            actionBar.setTitle(R.string.app_name);
-            actionBar.show();
+        mActionBar = getSupportActionBar();
+        if(mActionBar != null) {
+            mActionBar.setTitle(R.string.app_name);
+            mActionBar.show();
+            Log.d(TAG, "onCreate(): actionBar text: " + mActionBar.getTitle());
         }
 
         Retrofit retrofit = new Retrofit.Builder()
