@@ -65,6 +65,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectFailed(): " + connectionResult.toString());
+        Toast.makeText(this, "Connection Failed! Please Try Again", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -80,14 +81,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
-        String displayName = "";
+
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            displayName = acct.getDisplayName();
+            String displayName = acct.getDisplayName();
+            String email = acct.getEmail();
+            String id = acct.getId();
+            String idToken = acct.getIdToken();
             //updateUI(true);
+            Toast.makeText(this, "User Detail: " + displayName + "\n" + email + "\n" + id + "\n" + idToken, Toast.LENGTH_LONG).show();
         }
-
-        Toast.makeText(this, displayName, Toast.LENGTH_LONG).show();
     }
 }
