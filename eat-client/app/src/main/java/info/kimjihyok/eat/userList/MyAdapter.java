@@ -1,6 +1,8 @@
 package info.kimjihyok.eat.userList;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import info.kimjihyok.eat.model.User;
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    private static final String TAG = "Myadapter";
     private List<User> mDataset;
 
     @Override
@@ -39,6 +42,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.mUsername.setText(mDataset.get(position).displayName);
         holder.mEmail.setText(mDataset.get(position).email);
         holder.mAvailableTime.setText("Available Lunch Time: " + mDataset.get(position).availableTimeString);
+        AdapterOnClickListener clickListener = new AdapterOnClickListener(position);
+        holder.mCardView.setOnClickListener(clickListener);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -47,11 +52,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return mDataset.size();
     }
 
+    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+
+    private class AdapterOnClickListener implements View.OnClickListener {
+        private int position;
+
+        public AdapterOnClickListener(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "onClick(): " + position);
+        }
+    }
+
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
+        public CardView mCardView;
         public TextView mUsername;
         public TextView mAvailableTime;
         public TextView mEmail;
@@ -61,6 +87,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             mEmail = (TextView) v.findViewById(R.id.user_email_text_view);
             mUsername = (TextView) v.findViewById(R.id.user_name_text_view);
             mAvailableTime = (TextView) v.findViewById(R.id.lunch_time_text_view);
+            mCardView = (CardView) v.findViewById(R.id.card_view);
         }
     }
 }
