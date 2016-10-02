@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "796713964208",
+    "project_id": "hackjam-eat"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796713964208:android:6627a5a2709349f8",
+        "android_client_info": {
+          "package_name": "info.kimjihyok.eat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796713964208-b6qtekb7steop9247h791qbr7k0dfgk0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.kimjihyok.eat",
+            "certificate_hash": "5BCBE40FFAC274D18F48E4AA7E1AB7086CE1AE22"
+          }
+        },
+        {
+          "client_id": "796713964208-kdgdfkiu8r0agfqh5ajm5jq06c0jb9ro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwpy4KifThvZy38lFCvtSHB3lmeiXUS-M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
