@@ -22,6 +22,7 @@ import info.kimjihyok.eat.R;
 import info.kimjihyok.eat.helpers.ApiManager;
 import info.kimjihyok.eat.helpers.EatApiServices;
 import info.kimjihyok.eat.model.User;
+import info.kimjihyok.eat.userList.AvialableUserListActivity;
 import retrofit2.Retrofit;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -110,9 +111,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             newUser.email = acct.getEmail();
             newUser.id = acct.getId();
 
+            Intent userListIntent = new Intent(this, AvialableUserListActivity.class);
+            startActivity(userListIntent);
+
             Toast.makeText(this, "User Detail: " + newUser.toString(), Toast.LENGTH_LONG).show();
-
-
         }
     }
 }

@@ -29,8 +29,6 @@ public class AvialableUserListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_avialable_user_list);
 
         mUserListRecyclerView = (RecyclerView) findViewById(R.id.user_list_recycler_view);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mUserListRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
@@ -39,10 +37,33 @@ public class AvialableUserListActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
         List<User> userList = new ArrayList<>();
+        User dummyUser = new User();
+        dummyUser.email = "dummyEmail@gmail.com";
+        dummyUser.displayName = "Dummy Kim";
+        dummyUser.availableTimeString = "12:00 ~ 13:30";
+
+        User dummyUser1 = new User();
+        dummyUser1.email = "dwlee@gmail.com";
+        dummyUser1.displayName = "Dan Lew";
+        dummyUser1.availableTimeString = "12:00 ~ 13:30";
+
+        User dummyUser2 = new User();
+        dummyUser2.email = "jakewhardon@gmail.com";
+        dummyUser2.displayName = "Jake Wharton";
+        dummyUser2.availableTimeString = "12:00 ~ 13:30";
+
+        User dummyUser3 = new User();
+        dummyUser3.email = "blueinreis@gmail.com";
+        dummyUser3.displayName = "Blue Chan";
+        dummyUser3.availableTimeString = "12:00 ~ 13:30";
+
+        userList.add(dummyUser);
+        userList.add(dummyUser1);
+        userList.add(dummyUser2);
+        userList.add(dummyUser3);
 
         mAdapter = new MyAdapter(userList);
         mUserListRecyclerView.setAdapter(mAdapter);
-
     }
 
 

@@ -36,8 +36,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mUsername.setText(mDataset.get(position).displayName + " " + mDataset.get(position).email);
-        holder.mAvailableTime.setText(mDataset.get(position).availableTimeString);
+        holder.mUsername.setText(mDataset.get(position).displayName);
+        holder.mEmail.setText(mDataset.get(position).email);
+        holder.mAvailableTime.setText("Available Lunch Time: " + mDataset.get(position).availableTimeString);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -46,7 +47,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return mDataset.size();
     }
 
-
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -54,9 +54,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // each data item is just a string in this case
         public TextView mUsername;
         public TextView mAvailableTime;
+        public TextView mEmail;
 
         public ViewHolder(View v) {
             super(v);
+            mEmail = (TextView) v.findViewById(R.id.user_email_text_view);
             mUsername = (TextView) v.findViewById(R.id.user_name_text_view);
             mAvailableTime = (TextView) v.findViewById(R.id.lunch_time_text_view);
         }
